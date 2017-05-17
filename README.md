@@ -5,4 +5,6 @@
 * I have made SimpleTradeList() very simple. No extra methods (except add record and make calculations).
 * Code is checked with PEP8
 * To run tests you can execute:
-	`python test*.py`
+	`python test_stock.py`
+  or
+	`python test_trade.py`
