@@ -181,5 +181,6 @@ class SimpleTradeList(object):
 
 
 if __name__ == "__main__":
-    # no requirements for cui or gui
-    pass
+    # no requirements for cui or gui, just run doctests if exist
+    import doctest
+    doctest.testmod()    

@@ -150,9 +150,10 @@ class PreferredStock(StockABC):
         return (self.fixed_dividend * self.par_value) / (price * 100)
 
     def __repr__(self):
-        return 'PreferredStock({symbol!r}, {fixed_dividend!r}, ' \
-               '{par_value!r})'.format(
+        return 'PreferredStock({symbol!r}, {last_dividend!r}, ' \
+               '{fixed_dividend!r}, {par_value!r})'.format(
                    symbol=self.symbol,
+                   last_dividend=self.last_dividend,
                    fixed_dividend=self.fixed_dividend,
                    par_value=self.par_value)
 
@@ -160,17 +161,14 @@ class PreferredStock(StockABC):
 class StockFactory(object):
     """Returns stock object depending on type
 
-    >>> StockFactory(StockType.COMMON,
-                     'TEA', last_dividend=0, par_value=100)
+    >>> StockFactory(StockType.COMMON, 'TEA', last_dividend=0, par_value=100)
     CommonStock('TEA', 0, 100)
 
-    >>> StockFactory(StockType.PREFERRED,
-                     'GIN', last_dividend=8, fixed_dividend=2, par_value=100)
+    >>> StockFactory(StockType.PREFERRED, 'GIN', last_dividend=8, fixed_dividend=2, par_value=100)
     PreferredStock('GIN', 8, 2, 100)
 
-    >>> StockFactory('Common',
-                     'POP', last_dividend=8, par_value=100)
-    CommonStock('POP', 0, 100)
+    >>> StockFactory('Common', 'POP', last_dividend=8, par_value=100)
+    CommonStock('POP', 8, 100)
     """
 
     stock_types = {
@@ -184,5 +182,6 @@ class StockFactory(object):
 
 
 if __name__ == "__main__":
-    # no requirements for cui or gui
-    pass
+    # no requirements for cui or gui, just run doctests if exist
+    import doctest
+    doctest.testmod()
